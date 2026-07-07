@@ -119,6 +119,14 @@ create table public.app_settings (
 
 insert into public.app_settings (id) values (1);
 
+insert into public.training_items (title, description, required, sort_order) values
+  ('Attend NurtureSTEM orientation', 'Join the live orientation session covering program goals and expectations.', true, 1),
+  ('Review tutoring expectations', 'Read the tutoring expectations guide for session structure and conduct.', true, 2),
+  ('Review age-appropriate communication guidelines', 'Learn how to communicate clearly and kindly with younger students.', true, 3),
+  ('Review STEM lesson structure', 'Understand how NurtureSTEM lessons are organized and paced.', true, 4),
+  ('Review student privacy guidelines', 'Understand what student information must never be collected or shared.', true, 5),
+  ('Complete first-session preparation', 'Prepare materials and an icebreaker for your first session.', true, 6);
+
 create or replace function public.my_profile_id()
 returns uuid
 language sql

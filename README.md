@@ -2,7 +2,7 @@
 
 Internal operations platform for NurtureSTEM, a student-led STEM education initiative founded in 2024. High-school volunteers tutor elementary and middle-school students in math and science; this dashboard coordinates student rosters, volunteer tutors, assignments, training, tutoring hours, teaching resources, and aggregate impact reporting.
 
-The app intentionally collects minimal student information: display name, level, subject focus, status, cohort, and assignment only. No contact details, addresses, meeting locations, or other sensitive data are stored.
+The app intentionally collects minimal student information: display name, level, subject focus, status, and assignment only. No contact details, addresses, meeting locations, or other sensitive data are stored.
 
 ## Tech stack
 
@@ -17,9 +17,8 @@ The app intentionally collects minimal student information: display name, level,
 ### 1. Create a Supabase project
 
 1. Create a project at [supabase.com](https://supabase.com).
-2. In the SQL Editor, run `supabase/migrations/0001_schema.sql`.
-3. Optionally run `supabase/seed.sql` for demo data (development only).
-4. For local development, in Authentication → Sign In / Providers, consider disabling "Confirm email" so signups can proceed without an email step.
+2. In the SQL Editor, run `supabase/migrations/0001_schema.sql`. This creates all tables, security policies, and the default volunteer training checklist.
+3. For local development, in Authentication → Sign In / Providers, consider disabling "Confirm email" so signups can proceed without an email step.
 
 ### 2. Configure environment
 
