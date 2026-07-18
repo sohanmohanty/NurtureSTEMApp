@@ -26,7 +26,7 @@ export default async function AssignmentsPage() {
         .from("students")
         .select("*")
         .eq("archived", false)
-        .order("created_at"),
+        .order("updated_at", { ascending: false }),
       supabase
         .from("volunteers")
         .select("*")
@@ -38,7 +38,7 @@ export default async function AssignmentsPage() {
           "id, student_id, volunteer_id, students(display_name, subject_focus), volunteers(name)"
         )
         .eq("status", "Active")
-        .order("created_at", { ascending: false }),
+        .order("updated_at", { ascending: false }),
     ]);
 
   type RawAssignment = {

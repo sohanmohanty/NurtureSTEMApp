@@ -20,7 +20,7 @@ export default async function StudentsPage() {
       supabase
         .from("students")
         .select("*")
-        .order("created_at", { ascending: false }),
+        .order("updated_at", { ascending: false }),
       supabase
         .from("assignments")
         .select("id, student_id, volunteer_id, status, volunteers(name)")

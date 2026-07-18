@@ -20,7 +20,7 @@ export default async function HoursPage() {
     supabase
       .from("hour_logs")
       .select("*, volunteers(name), students(display_name)")
-      .order("created_at", { ascending: false }),
+      .order("updated_at", { ascending: false }),
     supabase.from("volunteers").select("id, name").order("name"),
   ]);
 

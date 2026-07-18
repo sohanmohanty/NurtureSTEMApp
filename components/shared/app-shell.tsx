@@ -112,7 +112,11 @@ export function AppShell({ role, name, children }: AppShellProps) {
   );
 
   const brand = (
-    <div className="flex items-center gap-2.5 px-6 py-5">
+    <Link
+      href="/"
+      onClick={() => setMobileOpen(false)}
+      className="flex items-center gap-2.5 px-6 py-5 transition-opacity hover:opacity-80"
+    >
       <div className="rounded-lg bg-primary p-1.5">
         <Atom className="h-5 w-5 text-primary-foreground" />
       </div>
@@ -122,7 +126,7 @@ export function AppShell({ role, name, children }: AppShellProps) {
         </p>
         <p className="text-xs capitalize text-sidebar-muted">{role}</p>
       </div>
-    </div>
+    </Link>
   );
 
   const footer = (

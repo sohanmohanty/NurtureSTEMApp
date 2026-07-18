@@ -23,7 +23,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SubjectBarChart } from "@/components/charts/subject-bar";
-import { StatusPieChart } from "@/components/charts/status-pie";
+import {
+  VolunteerLoadChart,
+  type VolunteerLoadRow,
+} from "@/components/charts/volunteer-load";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -34,8 +37,19 @@ export default async function DashboardPage() {
   if (profile.role === "volunteer") redirect("/my");
   if (profile.role === "advisor") redirect("/reports");
 
-  const { data: statsData, error: statsError } =
-    await supabase.rpc("get_program_stats");
+  const [
+    { data: statsData, error: statsError },
+    { data: volunteerRows },
+    { data: assignmentRows },
+  ] = await Promise.all([
+    supabase.rpc("get_program_stats"),
+    supabase
+      .from("volunteers")
+      .select("id, name, max_capacity")
+      .eq("archived", false)
+      .eq("active_status", true),
+    supabase.from("assignments").select("volunteer_id").eq("status", "Active"),
+  ]);
 
   if (statsError || !statsData) {
     return (
@@ -50,6 +64,26 @@ export default async function DashboardPage() {
   }
 
   const stats = statsData as ProgramStats;
+
+  const assignedCounts = new Map<string, number>();
+  for (const row of (assignmentRows ?? []) as { volunteer_id: string }[]) {
+    assignedCounts.set(
+      row.volunteer_id,
+      (assignedCounts.get(row.volunteer_id) ?? 0) + 1
+    );
+  }
+  const volunteerLoad: VolunteerLoadRow[] = (
+    (volunteerRows ?? []) as { id: string; name: string; max_capacity: number }[]
+  )
+    .map((v) => {
+      const assigned = assignedCounts.get(v.id) ?? 0;
+      return {
+        name: v.name,
+        assigned,
+        open: Math.max(0, v.max_capacity - assigned),
+      };
+    })
+    .sort((a, b) => b.assigned - a.assigned || a.name.localeCompare(b.name));
 
   return (
     <div className="space-y-6">
@@ -124,10 +158,10 @@ export default async function DashboardPage() {
         </Card>
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Student status breakdown</CardTitle>
+            <CardTitle>Volunteer tutor load</CardTitle>
           </CardHeader>
           <CardContent>
-            <StatusPieChart data={stats.students_by_status} />
+            <VolunteerLoadChart data={volunteerLoad} />
           </CardContent>
         </Card>
       </div>
