@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Atom, BookOpen, Clock, GraduationCap, Users } from "lucide-react";
+import { BookOpen, Clock, GraduationCap, Users } from "lucide-react";
+import { LogoMark } from "@/components/shared/logo";
 import { createClient } from "@/lib/supabase/server";
 import { minutesToHoursNumber } from "@/lib/format";
 import type { PublicStats } from "@/lib/types";
@@ -25,7 +26,7 @@ export default async function PublicImpactPage() {
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
           <Link href="/" className="flex items-center gap-2.5">
             <div className="rounded-lg bg-primary p-1.5">
-              <Atom className="h-5 w-5 text-primary-foreground" />
+              <LogoMark className="h-5 w-5 text-primary-foreground" />
             </div>
             <span className="font-semibold">NurtureSTEM</span>
           </Link>

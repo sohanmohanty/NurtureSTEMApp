@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
-  Atom,
   BarChart3,
   BookOpen,
   ClipboardCheck,
@@ -23,6 +22,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { LogoMark } from "@/components/shared/logo";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import type { Role } from "@/lib/types";
@@ -118,7 +118,7 @@ export function AppShell({ role, name, children }: AppShellProps) {
       className="flex items-center gap-2.5 px-6 py-5 transition-opacity hover:opacity-80"
     >
       <div className="rounded-lg bg-primary p-1.5">
-        <Atom className="h-5 w-5 text-primary-foreground" />
+        <LogoMark className="h-5 w-5 text-primary-foreground" />
       </div>
       <div>
         <p className="text-sm font-semibold text-sidebar-accent-foreground">
@@ -155,7 +155,7 @@ export function AppShell({ role, name, children }: AppShellProps) {
       <header className="sticky top-0 z-30 flex items-center justify-between border-b bg-sidebar px-4 py-3 lg:hidden no-print">
         <div className="flex items-center gap-2">
           <div className="rounded-md bg-primary p-1">
-            <Atom className="h-4 w-4 text-primary-foreground" />
+            <LogoMark className="h-4 w-4 text-primary-foreground" />
           </div>
           <span className="text-sm font-semibold text-sidebar-accent-foreground">
             NurtureSTEM Ops

@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
-import { Atom } from "lucide-react";
+import { LogoMark } from "@/components/shared/logo";
 import { getSessionProfile } from "@/lib/auth";
 import { SetupForm } from "./setup-form";
 
@@ -17,7 +17,7 @@ export default async function SetupPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 py-12">
       <div className="mb-8 flex items-center gap-2.5">
         <div className="rounded-lg bg-primary p-1.5">
-          <Atom className="h-5 w-5 text-primary-foreground" />
+          <LogoMark className="h-5 w-5 text-primary-foreground" />
         </div>
         <span className="text-lg font-semibold">NurtureSTEM Ops</span>
       </div>

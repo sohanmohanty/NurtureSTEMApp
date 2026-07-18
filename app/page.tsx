@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  Atom,
   BarChart3,
   BookOpen,
   ClipboardCheck,
@@ -10,6 +9,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { LogoMark } from "@/components/shared/logo";
 
 const FEATURES = [
   {
@@ -34,7 +34,7 @@ const FEATURES = [
     icon: Clock,
     title: "Hour tracking",
     description:
-      "Volunteers log tutoring hours and admins approve them with a clear review flow.",
+      "Volunteers log class and tutoring hours and admins approve them with a clear review flow.",
   },
   {
     icon: BookOpen,
@@ -46,7 +46,7 @@ const FEATURES = [
     icon: BarChart3,
     title: "Impact reporting",
     description:
-      "Generate aggregate reports on students reached, hours tutored, and program growth.",
+      "Generate aggregate reports on students reached, hours taught, and program growth.",
   },
 ];
 
@@ -54,21 +54,21 @@ export default function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="border-b bg-card">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-y-3 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-2.5">
             <div className="rounded-lg bg-primary p-1.5">
-              <Atom className="h-5 w-5 text-primary-foreground" />
+              <LogoMark className="h-5 w-5 text-primary-foreground" />
             </div>
             <span className="font-semibold">NurtureSTEM Ops</span>
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="ghost" asChild>
+            <Button variant="ghost" className="hidden sm:inline-flex" asChild>
               <Link href="/impact">Public Impact</Link>
             </Button>
-            <Button variant="outline" asChild>
+            <Button variant="outline" className="px-3 sm:px-4" asChild>
               <Link href="/login">Sign in</Link>
             </Button>
-            <Button asChild>
+            <Button className="px-3 sm:px-4" asChild>
               <Link href="/signup">Sign up</Link>
             </Button>
           </div>
@@ -78,16 +78,16 @@ export default function LandingPage() {
       <main className="flex-1">
         <section className="mx-auto max-w-5xl px-6 py-16 text-center sm:py-24">
           <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm text-muted-foreground">
-            <Atom className="h-4 w-4 text-primary" />
+            <LogoMark className="h-4 w-4 text-primary" />
             Internal operations platform
           </div>
           <h1 className="mx-auto max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
-            The home base for NurtureSTEM tutoring
+            The home base for NurtureSTEM classes and tutoring
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
             NurtureSTEM Ops helps coordinate student rosters, volunteer tutors,
-            tutoring assignments, training, hours, resources, and impact
-            reporting for the NurtureSTEM STEM education initiative.
+            class and tutoring assignments, training, hours, resources, and
+            impact reporting for the NurtureSTEM STEM education initiative.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button size="lg" asChild>
