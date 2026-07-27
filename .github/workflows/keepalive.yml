@@ -1,0 +1,19 @@
+name: Keep Supabase awake
+
+# Backup for the Vercel cron in vercel.json: pings the keepalive endpoint,
+# which runs a trivial read query so the free-tier Supabase project
+# registers activity and is not auto-paused after 7 idle days.
+on:
+  schedule:
+    - cron: "0 3,9,15,21 * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping keepalive endpoint
+        run: |
+          response=$(curl -fsS https://nurture-stem-ops.vercel.app/api/keepalive)
+          echo "Response: $response"
+          echo "$response" | grep -q '"ok":true'
