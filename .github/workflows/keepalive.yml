@@ -14,6 +14,6 @@ jobs:
     steps:
       - name: Ping keepalive endpoint
         run: |
-          response=$(curl -fsS https://nurture-stem-ops.vercel.app/api/keepalive)
+          response=$(curl -fsS https://platform.nurturestem.org/api/keepalive)
           echo "Response: $response"
           echo "$response" | grep -q '"ok":true'

@@ -4,6 +4,7 @@ import { BookOpen, Clock, GraduationCap, Users } from "lucide-react";
 import { LogoMark } from "@/components/shared/logo";
 import { createClient } from "@/lib/supabase/server";
 import { minutesToHoursNumber } from "@/lib/format";
+import { PUBLIC_WEBSITE_URL } from "@/lib/constants";
 import type { PublicStats } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
   title: "Public Impact",
+  alternates: { canonical: "/impact" },
 };
 
 export const revalidate = 3600;
@@ -116,7 +118,10 @@ export default async function PublicImpactPage() {
 
       <footer className="border-t">
         <div className="mx-auto max-w-4xl px-6 py-6 text-center text-sm text-muted-foreground">
-          NurtureSTEM — a student-led STEM education initiative. This page only
+          <a href={PUBLIC_WEBSITE_URL} className="hover:text-foreground">
+            NurtureSTEM
+          </a>{" "}
+          — a student-led STEM education initiative. This page only
           shows aggregate program data.
         </div>
       </footer>

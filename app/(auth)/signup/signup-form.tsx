@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
+import { PLATFORM_URL } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -37,6 +38,12 @@ export function SignupForm() {
       email: email.trim(),
       password,
       options: {
+        emailRedirectTo: new URL(
+          "/login",
+          process.env.NODE_ENV === "development"
+            ? window.location.origin
+            : PLATFORM_URL
+        ).href,
         data: { name: name.trim() },
       },
     });

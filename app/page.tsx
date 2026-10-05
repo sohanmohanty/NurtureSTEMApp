@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   BarChart3,
   BookOpen,
@@ -10,6 +11,19 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { LogoMark } from "@/components/shared/logo";
+import { PUBLIC_WEBSITE_URL } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "NurtureSTEM Ops",
+    description:
+      "The home base for NurtureSTEM student rosters, volunteers, classes, and tutoring.",
+    url: "/",
+    siteName: "NurtureSTEM Ops",
+    type: "website",
+  },
+};
 
 const FEATURES = [
   {
@@ -126,7 +140,12 @@ export default function LandingPage() {
 
       <footer className="border-t">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-2 px-6 py-6 text-sm text-muted-foreground sm:flex-row">
-          <p>NurtureSTEM — a student-led STEM education initiative</p>
+          <p>
+            <a href={PUBLIC_WEBSITE_URL} className="hover:text-foreground">
+              NurtureSTEM
+            </a>{" "}
+            — a student-led STEM education initiative
+          </p>
           <Link href="/impact" className="hover:text-foreground">
             View public impact
           </Link>

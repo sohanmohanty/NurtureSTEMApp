@@ -1,3 +1,6 @@
+export const PLATFORM_URL = "https://platform.nurturestem.org";
+export const PUBLIC_WEBSITE_URL = "https://nurturestem.org";
+
 export const SUBJECTS = [
   "Math",
   "Science",

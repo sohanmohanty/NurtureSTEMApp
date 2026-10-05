@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
+import { PLATFORM_URL } from "@/lib/constants";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(PLATFORM_URL),
   title: {
     default: "NurtureSTEM Ops",
     template: "%s | NurtureSTEM Ops",
