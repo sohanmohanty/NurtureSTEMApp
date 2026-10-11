@@ -1,5 +1,6 @@
 export const PLATFORM_URL = "https://platform.nurturestem.org";
 export const PUBLIC_WEBSITE_URL = "https://nurturestem.org";
+export const VOLUNTEER_APPLICATION_URL = `${PUBLIC_WEBSITE_URL}/volunteer`;
 
 export const SUBJECTS = [
   "Math",

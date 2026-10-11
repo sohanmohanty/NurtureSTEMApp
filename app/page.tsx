@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { LogoMark } from "@/components/shared/logo";
-import { PUBLIC_WEBSITE_URL } from "@/lib/constants";
+import { PUBLIC_WEBSITE_URL, VOLUNTEER_APPLICATION_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -83,7 +83,7 @@ export default function LandingPage() {
               <Link href="/login">Sign in</Link>
             </Button>
             <Button className="px-3 sm:px-4" asChild>
-              <Link href="/signup">Sign up</Link>
+              <a href={VOLUNTEER_APPLICATION_URL}>Apply to volunteer</a>
             </Button>
           </div>
         </div>
@@ -108,7 +108,7 @@ export default function LandingPage() {
               <Link href="/login">Sign in to your dashboard</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link href="/signup">Join as a volunteer</Link>
+              <Link href="/signup">Sign up</Link>
             </Button>
           </div>
           <p className="mt-6 text-sm text-muted-foreground">

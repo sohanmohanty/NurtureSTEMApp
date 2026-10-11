@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
-import { PLATFORM_URL } from "@/lib/constants";
+import { PLATFORM_URL, VOLUNTEER_APPLICATION_URL } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -83,13 +83,27 @@ export function SignupForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl">Create your account</CardTitle>
+        <CardTitle className="text-xl">Create your volunteer account</CardTitle>
         <CardDescription>
-          New accounts start as volunteer tutors. An admin can adjust your role
-          later.
+          This page is for volunteers who have already been accepted into
+          NurtureSTEM.
         </CardDescription>
       </CardHeader>
       <CardContent>
+        <div className="mb-5 border-l-2 border-primary pl-3 text-sm">
+          <p className="font-medium">New to NurtureSTEM?</p>
+          <p className="mt-1 text-muted-foreground">
+            Start by{" "}
+            <a
+              href={VOLUNTEER_APPLICATION_URL}
+              className="font-medium text-primary hover:underline"
+            >
+              applying to volunteer on our website
+            </a>
+            . Once you are accepted, come back here and sign up with the same
+            email you applied with.
+          </p>
+        </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name">Full name</Label>
