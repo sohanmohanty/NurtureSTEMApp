@@ -75,14 +75,14 @@ export default function LandingPage() {
             </div>
             <span className="font-semibold">NurtureSTEM Ops</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" className="hidden sm:inline-flex" asChild>
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            <Button variant="ghost" className="px-2.5 sm:px-4" asChild>
               <Link href="/impact">Public Impact</Link>
             </Button>
-            <Button variant="outline" className="px-3 sm:px-4" asChild>
+            <Button variant="outline" className="px-2.5 sm:px-4" asChild>
               <Link href="/login">Sign in</Link>
             </Button>
-            <Button className="px-3 sm:px-4" asChild>
+            <Button className="px-2.5 sm:px-4" asChild>
               <a href={VOLUNTEER_APPLICATION_URL}>Apply to volunteer</a>
             </Button>
           </div>
