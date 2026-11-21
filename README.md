@@ -37,8 +37,8 @@ Fill in `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` from your
 
 In Supabase, under Authentication > URL Configuration, set:
 
-- Site URL: `https://platform.nurturestem.org`
-- Redirect URLs: `https://platform.nurturestem.org/login` and `http://localhost:3000/login` (add the actual local port if different).
+- Site URL: your production URL, such as `https://your-domain.com`
+- Redirect URLs: `<your production URL>/login` and `http://localhost:3000/login` (use your actual local port if different).
 
 Signup confirmation emails return to the platform's sign-in page in production and the current local origin during development. If you customized the confirmation email template, ensure its confirmation link uses `{{ .ConfirmationURL }}` rather than a hardcoded old domain. See [Supabase redirect URL configuration](https://supabase.com/docs/guides/auth/redirect-urls).
 
@@ -70,14 +70,13 @@ Role changes are managed by admins under Settings → User roles. Row-level secu
 
 ## Public impact page
 
-[platform.nurturestem.org/impact](https://platform.nurturestem.org/impact) shows only aggregate numbers (students reached, volunteer tutors, approved hours, subjects supported). It can be toggled and edited under Settings and never exposes names or individual records.
+[platform.nurturestem.org/impact](https://platform.nurturestem.org/impact) shows only aggregate numbers (students reached, volunteer tutors, approved hours, subjects supported).
 
 ## Deploying to Vercel
 
-1. Push the repository to GitHub.
-2. Import it in Vercel.
-3. Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in the Vercel project environment.
-4. In the Vercel project's Domains settings, attach `platform.nurturestem.org` to the production environment and complete the DNS setup shown by Vercel.
-5. Apply the Supabase authentication URL settings above and deploy.
-
-Vercel Cron calls `/api/keepalive` daily. The GitHub Actions backup calls `https://platform.nurturestem.org/api/keepalive` every six hours.
+1. Push your copy of the repository to your own GitHub account.
+2. In Vercel, create a new project and import that repository.
+3. Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` from your Supabase project to the Vercel project's environment variables.
+4. To use a custom domain, add it in the Vercel project's Domains settings and complete the DNS setup Vercel shows. Otherwise, use the `.vercel.app` URL Vercel assigns.
+5. In Supabase, under Authentication > URL Configuration, set the Site URL to your production URL and add `<your production URL>/login` to the Redirect URLs.
+6. Deploy.
