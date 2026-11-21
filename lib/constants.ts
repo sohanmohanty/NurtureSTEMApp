@@ -44,6 +44,4 @@ export const TRAINING_STATUSES = [
 
 export const SUMMARY_MAX_LENGTH = 200;
 
-export const MAX_SESSION_MINUTES = 480;
-
 export const PROGRAM_START_YEAR = 2024;

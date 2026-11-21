@@ -15,6 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -37,7 +38,6 @@ import { StatusBadge } from "@/components/shared/status-badge";
 import { EmptyState } from "@/components/shared/empty-state";
 
 const GROUP = "group";
-const DURATIONS = [30, 45, 60, 75, 90, 120];
 
 type MyHoursClientProps = {
   volunteerId: string;
@@ -53,7 +53,7 @@ export function MyHoursClient({
   const [studentId, setStudentId] = useState<string>(
     students[0]?.id ?? GROUP
   );
-  const [duration, setDuration] = useState("60");
+  const [duration, setDuration] = useState("1");
   const [subject, setSubject] = useState<string>("Math");
   const [summary, setSummary] = useState("");
   const [statusTab, setStatusTab] = useState("all");
@@ -83,7 +83,7 @@ export function MyHoursClient({
       const result = await submitHourLog({
         volunteer_id: volunteerId,
         student_id: studentId === GROUP ? null : studentId,
-        duration_minutes: Number(duration),
+        duration_minutes: Math.round(Number(duration) * 60),
         subject_category: subject,
         short_summary: summary || null,
       });
@@ -125,19 +125,16 @@ export function MyHoursClient({
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label>Duration</Label>
-                <Select value={duration} onValueChange={setDuration}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {DURATIONS.map((minutes) => (
-                      <SelectItem key={minutes} value={String(minutes)}>
-                        {formatDuration(minutes)}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Label htmlFor="log_duration">Duration (hours)</Label>
+                <Input
+                  id="log_duration"
+                  type="number"
+                  required
+                  min={0.25}
+                  step={0.25}
+                  value={duration}
+                  onChange={(e) => setDuration(e.target.value)}
+                />
               </div>
               <div className="space-y-2">
                 <Label>Subject</Label>

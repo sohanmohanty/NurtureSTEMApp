@@ -77,12 +77,8 @@ export async function updateHourLogDuration(
 ): Promise<ActionResult> {
   const { supabase, profile, error } = await getActionContext(["admin"]);
   if (!profile) return { ok: false, error: error! };
-  if (
-    !Number.isInteger(durationMinutes) ||
-    durationMinutes < 5 ||
-    durationMinutes > 480
-  ) {
-    return { ok: false, error: "Duration must be between 5 and 480 minutes." };
+  if (!Number.isInteger(durationMinutes) || durationMinutes < 5) {
+    return { ok: false, error: "Duration must be at least 5 minutes." };
   }
   const { error: dbError } = await supabase
     .from("hour_logs")

@@ -285,7 +285,6 @@ export function HoursClient({ logs, volunteers }: HoursClientProps) {
               id="duration"
               type="number"
               min={5}
-              max={480}
               step={5}
               value={editDuration}
               onChange={(e) => setEditDuration(e.target.value)}

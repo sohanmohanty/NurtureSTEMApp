@@ -59,7 +59,7 @@ create table public.hour_logs (
   id uuid primary key default gen_random_uuid(),
   volunteer_id uuid not null references public.volunteers(id) on delete cascade,
   student_id uuid references public.students(id) on delete set null,
-  duration_minutes int not null check (duration_minutes between 5 and 480),
+  duration_minutes int not null check (duration_minutes >= 5),
   subject_category text not null check (subject_category in ('Math', 'Science', 'Algebra', 'Geometry', 'Biology', 'Chemistry', 'Physics', 'Computer Science', 'General STEM')),
   short_summary text check (char_length(short_summary) <= 200),
   approval_status text not null default 'Pending' check (approval_status in ('Pending', 'Approved', 'Rejected')),

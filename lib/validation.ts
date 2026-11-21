@@ -1,7 +1,6 @@
 import { z } from "zod";
 import {
   APPROVAL_STATUSES,
-  MAX_SESSION_MINUTES,
   RESOURCE_TYPES,
   STUDENT_LEVELS,
   STUDENT_STATUSES,
@@ -37,11 +36,7 @@ export const volunteerSelfSchema = z.object({
 export const hourLogSchema = z.object({
   volunteer_id: z.string().uuid(),
   student_id: z.string().uuid().nullable().optional(),
-  duration_minutes: z.coerce
-    .number()
-    .int()
-    .min(5)
-    .max(MAX_SESSION_MINUTES),
+  duration_minutes: z.coerce.number().int().min(5),
   subject_category: z.enum(SUBJECTS),
   short_summary: z
     .string()
@@ -54,12 +49,7 @@ export const hourLogSchema = z.object({
 export const hourReviewSchema = z.object({
   id: z.string().uuid(),
   approval_status: z.enum(APPROVAL_STATUSES),
-  duration_minutes: z.coerce
-    .number()
-    .int()
-    .min(5)
-    .max(MAX_SESSION_MINUTES)
-    .optional(),
+  duration_minutes: z.coerce.number().int().min(5).optional(),
 });
 
 export const resourceSchema = z.object({
